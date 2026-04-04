@@ -1,0 +1,16 @@
+# Environment variables — never commit this
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# macOS
+.DS_Store
+
+# Generated outputs — optionally exclude from version control
+# outputs/
