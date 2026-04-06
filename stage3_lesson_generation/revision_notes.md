@@ -72,4 +72,4 @@
 ---
 
 ## Persona Profile Updates
-- Add whether Alex works with a dedicated security team, and how that changes what "implementing a defense" means for him
+- For technical personas, the lesson should present both implementation paths for defenses: one for developers who own their own pipeline and implement defenses directly, and one for developers who work with a dedicated security team. Knowing enough to ask the right questions and flag the right risks is a valid and important learning outcome for the latter group.
