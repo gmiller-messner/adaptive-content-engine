@@ -233,6 +233,3 @@ This isn't a tradeoff between security and staying current. It's the difference 
 ### 2. Verify Package Integrity
 
 Use hash verification to confirm that what you downloaded matches what the maintainer published:
-
-```
-# Generate hashes

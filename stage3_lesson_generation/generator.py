@@ -1,5 +1,6 @@
 import anthropic
 from pathlib import Path
+from datetime import datetime
 
 SYSTEM_PROMPT = """You are an expert instructional designer who creates tailored learning content.
 
@@ -15,11 +16,51 @@ Structure the lesson with:
 Do not include preamble or meta-commentary about the lesson. Begin the lesson directly."""
 
 
-def generate_lesson(source_path: Path, persona_path: Path, output_dir: Path) -> Path:
+def generate_lesson(
+    source_path: Path,
+    persona_path: Path,
+    output_dir: Path,
+    examples_path: Path | None = None,
+    learning_objectives_path: Path | None = None,
+    style_standards_path: Path | None = None,
+) -> Path:
     client = anthropic.Anthropic()
 
     source_document = source_path.read_text(encoding="utf-8")
     persona_profile = persona_path.read_text(encoding="utf-8")
+
+    examples_block = ""
+    if examples_path and examples_path.exists():
+        examples_bank = examples_path.read_text(encoding="utf-8")
+        examples_block = f"""
+Here is a bank of real-world examples you may draw from when illustrating concepts:
+
+<examples_bank>
+{examples_bank}
+</examples_bank>
+"""
+
+    objectives_block = ""
+    if learning_objectives_path and learning_objectives_path.exists():
+        learning_objectives = learning_objectives_path.read_text(encoding="utf-8")
+        objectives_block = f"""
+Here are the learning objectives this lesson should meet:
+
+<learning_objectives>
+{learning_objectives}
+</learning_objectives>
+"""
+
+    style_block = ""
+    if style_standards_path and style_standards_path.exists():
+        style_standards = style_standards_path.read_text(encoding="utf-8")
+        style_block = f"""
+Here are the style standards to follow when writing the lesson:
+
+<style_standards>
+{style_standards}
+</style_standards>
+"""
 
     user_message = f"""Here is the source document to teach from:
 
@@ -32,8 +73,8 @@ Here is the learner persona:
 <persona_profile>
 {persona_profile}
 </persona_profile>
-
-Generate a tailored lesson for this learner based on the source document."""
+{examples_block}{objectives_block}
+Generate a tailored lesson for this learner based on the source document.{style_block}"""
 
     print(f"\nGenerating lesson for: {persona_path.stem}")
     print("-" * 60)
@@ -56,7 +97,8 @@ Generate a tailored lesson for this learner based on the source document."""
     )
 
     output_dir.mkdir(exist_ok=True)
-    output_filename = f"lesson_{persona_path.stem.replace('persona_', '')}.md"
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_filename = f"lesson_{persona_path.stem.replace('persona_', '')}_{timestamp}.md"
     output_path = output_dir / output_filename
     output_path.write_text(lesson_text, encoding="utf-8")
 
