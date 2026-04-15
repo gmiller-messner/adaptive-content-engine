@@ -81,7 +81,7 @@ Generate a tailored lesson for this learner based on the source document.{style_
 
     with client.messages.stream(
         model="claude-opus-4-6",
-        max_tokens=4096,
+        max_tokens=16000,
         thinking={"type": "adaptive"},
         system=SYSTEM_PROMPT,
         messages=[{"role": "user", "content": user_message}],

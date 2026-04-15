@@ -1,0 +1,13 @@
+title: Adaptive Content Engine
+description: Security lessons tailored to your role, background, and tools.
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: default
+search_enabled: true
+
+kramdown:
+  parse_block_html: true
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
