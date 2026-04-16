@@ -18,10 +18,19 @@ def clean_persona_stem(stem: str) -> str:
     return name.replace("_", "-")
 
 
+def md_to_html_inline(text: str) -> str:
+    """Convert inline markdown (bold, italic, code) to HTML."""
+    text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", text)
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    return text
+
+
 def format_card_body(body: str) -> str:
-    """Add blank lines between field lines so kramdown renders each as its own paragraph."""
+    """Convert card body markdown lines to HTML paragraphs."""
     lines = [line.strip() for line in body.strip().split("\n") if line.strip()]
-    return "\n\n".join(lines)
+    html_lines = [f"<p>{md_to_html_inline(line)}</p>" for line in lines]
+    return "\n".join(html_lines)
 
 
 def render_attack_cards(content: str) -> str:
@@ -29,8 +38,8 @@ def render_attack_cards(content: str) -> str:
         name = match.group(1).strip()
         body = format_card_body(match.group(2))
         return (
-            f'\n<div class="attack-card" data-name="{name}" markdown="1">\n\n'
-            f"{body}\n\n"
+            f'\n<div class="attack-card" data-name="{name}">\n'
+            f"{body}\n"
             f"</div>\n"
         )
 
@@ -43,7 +52,6 @@ def render_attack_cards(content: str) -> str:
 
 
 def render_terms(content: str) -> str:
-
     def replace(match):
         text = match.group(1).strip()
         if " — " in text:
@@ -66,10 +74,10 @@ def render_images(content: str) -> str:
     def replace(match):
         description = match.group(1).strip()
         return (
-            f'\n<div class="image-placeholder">'
-            f'<div class="image-placeholder-label">[ image ]</div>'
-            f'<div class="image-placeholder-caption">{description}</div>'
-            f"</div>\n"
+            f'\n\n<div class="image-placeholder">\n'
+            f'  <div class="image-placeholder-label">[ image ]</div>\n'
+            f'  <div class="image-placeholder-caption">{description}</div>\n'
+            f"</div>\n\n"
         )
 
     return re.sub(r"\[IMAGE: ([^\]]+)\]", replace, content)
@@ -78,10 +86,16 @@ def render_images(content: str) -> str:
 def render_takeaways(content: str) -> str:
     def replace(match):
         body = match.group(1).strip()
+        lines = [line.strip() for line in body.split("\n") if line.strip()]
+        items = []
+        for line in lines:
+            text = re.sub(r"^[-*]\s*", "", line)
+            items.append(f"  <li>{md_to_html_inline(text)}</li>")
+        list_html = "\n".join(items)
         return (
-            f'\n<div class="takeaways" markdown="1">\n'
-            f"**Key Takeaways**\n\n"
-            f"{body}\n\n"
+            f'\n<div class="takeaways">\n'
+            f"  <p class=\"takeaways-header\">Key Takeaways</p>\n"
+            f"  <ul>\n{list_html}\n  </ul>\n"
             f"</div>\n"
         )
 
