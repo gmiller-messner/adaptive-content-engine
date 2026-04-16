@@ -63,7 +63,9 @@
   text-align: center;
   background-color: #f6f8fa;
 
-  .image-placeholder-label {
+  &::before {
+    content: "[ image ]";
+    display: block;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
@@ -72,7 +74,9 @@
     text-transform: uppercase;
   }
 
-  .image-placeholder-caption {
+  &[data-caption]::after {
+    content: attr(data-caption);
+    display: block;
     color: #6a737d;
     font-size: 0.875rem;
     font-style: italic;

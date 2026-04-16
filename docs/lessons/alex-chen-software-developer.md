@@ -45,10 +45,7 @@ That's why defense-in-depth matters here more than in most contexts. No single l
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">"Ignore all previous instructions" meme — showing a user prompt overriding a system prompt</div>
-</div>
+<div class="image-placeholder" data-caption=""Ignore all previous instructions" meme — showing a user prompt overriding a system prompt"></div>
 
 
 
@@ -84,10 +81,7 @@ Indirect injection is the more dangerous variant because the user isn't the atta
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">Side-by-side showing a clean-looking webpage and its HTML source with hidden injection instructions in comments and white text</div>
-</div>
+<div class="image-placeholder" data-caption="Side-by-side showing a clean-looking webpage and its HTML source with hidden injection instructions in comments and white text"></div>
 
 
 
@@ -246,10 +240,7 @@ Log agent actions, tool calls, and the content that triggered them. If you're us
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">"The call was coming from inside the house" — a security scanner icon with a red alert overlay</div>
-</div>
+<div class="image-placeholder" data-caption=""The call was coming from inside the house" — a security scanner icon with a red alert overlay"></div>
 
 
 

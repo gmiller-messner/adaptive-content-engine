@@ -39,10 +39,7 @@ Direct injection is the straightforward version: someone types instructions into
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">"Ignore all previous instructions" meme — showing a user prompt attempting to override a chatbot's behavior</div>
-</div>
+<div class="image-placeholder" data-caption=""Ignore all previous instructions" meme — showing a user prompt attempting to override a chatbot's behavior"></div>
 
 
 
@@ -71,10 +68,7 @@ Attackers exploit the fact that humans and LLMs perceive content differently. Hu
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">Side-by-side showing white text on white background — "invisible made visible" when background is changed</div>
-</div>
+<div class="image-placeholder" data-caption="Side-by-side showing white text on white background — "invisible made visible" when background is changed"></div>
 
 
 
@@ -109,10 +103,7 @@ When a coding agent is manipulated through prompt injection, it can take real ac
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">"The call was coming from inside the house" — visual metaphor for a trusted tool being the attack vector</div>
-</div>
+<div class="image-placeholder" data-caption=""The call was coming from inside the house" — visual metaphor for a trusted tool being the attack vector"></div>
 
 
 
@@ -154,10 +145,7 @@ The AI tool didn't do anything malicious. It did exactly what you asked. The pac
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">Example SBOM (Software Bill of Materials) showing a dependency tree with a compromised package highlighted in the chain</div>
-</div>
+<div class="image-placeholder" data-caption="Example SBOM (Software Bill of Materials) showing a dependency tree with a compromised package highlighted in the chain"></div>
 
 
 

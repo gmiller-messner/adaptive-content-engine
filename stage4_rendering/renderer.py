@@ -74,10 +74,7 @@ def render_images(content: str) -> str:
     def replace(match):
         description = match.group(1).strip()
         return (
-            f'\n\n<div class="image-placeholder">\n'
-            f'  <div class="image-placeholder-label">[ image ]</div>\n'
-            f'  <div class="image-placeholder-caption">{description}</div>\n'
-            f"</div>\n\n"
+            f'\n\n<div class="image-placeholder" data-caption="{description}"></div>\n\n'
         )
 
     return re.sub(r"\[IMAGE: ([^\]]+)\]", replace, content)

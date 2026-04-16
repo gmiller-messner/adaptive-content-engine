@@ -31,10 +31,7 @@ That's prompt injection. The AI follows hidden instructions embedded in content 
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">"Ignore all previous instructions" meme — showing a user attempting to override an AI chatbot's instructions</div>
-</div>
+<div class="image-placeholder" data-caption=""Ignore all previous instructions" meme — showing a user attempting to override an AI chatbot's instructions"></div>
 
 
 
@@ -69,10 +66,7 @@ The hidden content techniques are simple and effective:
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">Side-by-side of a resume as it appears visually vs. the same resume with hidden white text revealed — showing "invisible made visible"</div>
-</div>
+<div class="image-placeholder" data-caption="Side-by-side of a resume as it appears visually vs. the same resume with hidden white text revealed — showing "invisible made visible""></div>
 
 
 
@@ -131,10 +125,7 @@ In March 2026, a popular Python package called LiteLLM — used by millions of d
 
 
 
-<div class="image-placeholder">
-  <div class="image-placeholder-label">[ image ]</div>
-  <div class="image-placeholder-caption">"The call was coming from inside the house" — illustrating that the security tool itself was the attack vector</div>
-</div>
+<div class="image-placeholder" data-caption=""The call was coming from inside the house" — illustrating that the security tool itself was the attack vector"></div>
 
 
 
