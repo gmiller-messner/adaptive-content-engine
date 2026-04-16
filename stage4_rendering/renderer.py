@@ -29,8 +29,7 @@ def render_attack_cards(content: str) -> str:
         name = match.group(1).strip()
         body = format_card_body(match.group(2))
         return (
-            f'\n<div class="attack-card" markdown="1">\n'
-            f'<div class="attack-card-header">ATTACK MODEL: {name}</div>\n\n'
+            f'\n<div class="attack-card" data-name="{name}" markdown="1">\n\n'
             f"{body}\n\n"
             f"</div>\n"
         )
@@ -44,6 +43,7 @@ def render_attack_cards(content: str) -> str:
 
 
 def render_terms(content: str) -> str:
+
     def replace(match):
         text = match.group(1).strip()
         if " — " in text:

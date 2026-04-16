@@ -34,8 +34,7 @@ That's why defense-in-depth matters here more than in most contexts. No single l
 ### Direct Injection
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Direct Prompt Injection</div>
+<div class="attack-card" data-name="Direct Prompt Injection" markdown="1">
 
 **Vector:** User input to the LLM
 
@@ -65,8 +64,7 @@ A useful distinction: all jailbreaking is direct injection, but not all direct i
 ### Indirect Injection
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Indirect Prompt Injection</div>
+<div class="attack-card" data-name="Indirect Prompt Injection" markdown="1">
 
 **Vector:** External content the LLM is asked to read, summarize, or act on
 
@@ -253,8 +251,7 @@ Log agent actions, tool calls, and the content that triggered them. If you're us
 
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: The LiteLLM Supply Chain Attack — March 24, 2026</div>
+<div class="attack-card" data-name="The LiteLLM Supply Chain Attack — March 24, 2026" markdown="1">
 
 **Vector:** Compromised CI/CD security scanner (Trivy)
 

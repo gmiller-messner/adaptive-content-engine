@@ -42,8 +42,7 @@ Direct injection is the straightforward version: someone types instructions into
 
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Direct Injection — Chevrolet Dealership Chatbot</div>
+<div class="attack-card" data-name="Direct Injection — Chevrolet Dealership Chatbot" markdown="1">
 
 A Chevrolet dealership deployed a ChatGPT-powered chatbot on its website. A user manipulated the bot into agreeing to sell a 2024 Chevy Tahoe for one dollar — and it complied. The AI had no mechanism to distinguish a legitimate transaction from a manipulated one. A human sales agent would have flagged the request immediately.
 
@@ -59,8 +58,7 @@ Jailbreaking is one type of direct injection, but direct injection is the broade
 Indirect injection is the more dangerous variant because the *user* never does anything wrong. The malicious instructions are hidden inside external content — a webpage, a document, a code file, an email — that the LLM is asked to read or process. The user doesn't know the content has been tampered with.
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Indirect Injection — GitHub Copilot via Malicious Code Comments</div>
+<div class="attack-card" data-name="Indirect Injection — GitHub Copilot via Malicious Code Comments" markdown="1">
 
 Researchers demonstrated that malicious instructions embedded in code comments could manipulate GitHub Copilot's behavior. A file containing hidden instructions in comments could cause the coding assistant to generate subtly malicious code — introducing vulnerabilities, exfiltrating data, or altering logic in ways that pass a casual review. CVE-2025-53773, assigned a CVSS score of 9.6, documented remote code execution via prompt injection in GitHub Copilot.
 
@@ -88,8 +86,7 @@ A chatbot that only produces text has limited risk — the worst case is a bad o
 When a coding agent is manipulated through prompt injection, it can take real actions — running scripts, modifying files, making network requests — on behalf of the attacker.
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Prompt Injection Against Devin AI Coding Agent</div>
+<div class="attack-card" data-name="Prompt Injection Against Devin AI Coding Agent" markdown="1">
 
 Security researcher Johann Rehberger spent $500 testing Devin AI's security and found it completely defenseless against prompt injection. The asynchronous coding agent could be manipulated through crafted prompts to expose ports to the internet, leak access tokens, and install command-and-control malware.
 
@@ -99,8 +96,7 @@ This is directly relevant to anyone using AI coding assistants with terminal acc
 
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Auto-GPT Cryptocurrency Wallet Theft</div>
+<div class="attack-card" data-name="Auto-GPT Cryptocurrency Wallet Theft" markdown="1">
 
 Researchers gave an Auto-GPT agent control of a real cryptocurrency wallet and email access. An attacker sent an email containing hidden instructions disguised as newsletter content. When the agent processed the email, it absorbed the malicious instructions and initiated a real funds transfer to the attacker's wallet. The funds were gone before any human reviewed what had happened.
 

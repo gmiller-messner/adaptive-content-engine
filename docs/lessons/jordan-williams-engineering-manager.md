@@ -46,8 +46,7 @@ For your day-to-day work, indirect injection is the one that matters most.
 This isn't a hypothetical scenario — researchers and practitioners have demonstrated it repeatedly.
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Resume Injection</div>
+<div class="attack-card" data-name="Resume Injection" markdown="1">
 
 **Attack type:** Indirect prompt injection via document content
 
@@ -104,8 +103,7 @@ Shadow AI isn't about bad intent. It's about convenience winning over caution at
 ### Slack, Summarization, and Invisible Attacks
 
 
-<div class="attack-card" markdown="1">
-<div class="attack-card-header">ATTACK MODEL: Slack AI Data Exfiltration</div>
+<div class="attack-card" data-name="Slack AI Data Exfiltration" markdown="1">
 
 **Attack type:** Indirect injection via RAG poisoning
 

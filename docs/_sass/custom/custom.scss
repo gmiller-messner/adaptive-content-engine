@@ -6,7 +6,9 @@
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
 
-  .attack-card-header {
+  &::before {
+    content: "ATTACK MODEL: " attr(data-name);
+    display: block;
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     font-size: 0.7rem;
     font-weight: 700;
