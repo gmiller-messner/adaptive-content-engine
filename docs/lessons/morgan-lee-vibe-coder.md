@@ -1,5 +1,5 @@
 ---
-title: "LLM Security: What You Need to Know Before You Hit "Approve""
+title: "LLM Security: What You Need to Know Before You Hit \"Approve\""
 layout: default
 nav_order: 3
 parent: Lessons

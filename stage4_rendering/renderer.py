@@ -106,9 +106,10 @@ def render_lesson(input_path: Path, output_dir: Path, nav_order: int = 1) -> Pat
     title = extract_title(content)
     processed = process_tags(content)
 
+    safe_title = title.replace('"', '\\"')
     front_matter = (
         f"---\n"
-        f'title: "{title}"\n'
+        f'title: "{safe_title}"\n'
         f"layout: default\n"
         f"nav_order: {nav_order}\n"
         f"parent: Lessons\n"
