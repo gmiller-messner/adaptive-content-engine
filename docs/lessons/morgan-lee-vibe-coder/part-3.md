@@ -2,7 +2,7 @@
 title: "Part 3: Your Environment Is the Target"
 layout: default
 nav_order: 3
-parent: "Lesson"
+parent: "AI Security for Builders: What Every Prompt and Every Install Costs You"
 grand_parent: Lessons
 ---
 

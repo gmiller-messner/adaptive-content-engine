@@ -1,5 +1,5 @@
 ---
-title: "Lesson"
+title: "AI Security for Builders: What Every Prompt and Every Install Costs You"
 layout: default
 nav_order: 3
 has_children: true

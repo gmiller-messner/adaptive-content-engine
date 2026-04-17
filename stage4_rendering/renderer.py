@@ -3,7 +3,10 @@ from pathlib import Path
 
 
 def extract_title(content: str) -> str:
+    # Prefer a # heading; fall back to first ## heading that isn't a Part heading
     match = re.search(r"^# (.+)$", content, re.MULTILINE)
+    if not match:
+        match = re.search(r"^## (?!Part \d+)(.+)$", content, re.MULTILINE)
     return match.group(1).strip() if match else "Lesson"
 
 

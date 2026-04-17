@@ -2,7 +2,7 @@
 title: "Part 1: Prompt Injection"
 layout: default
 nav_order: 1
-parent: "Lesson"
+parent: "AI Security for Builders: What Every Prompt and Every Install Costs You"
 grand_parent: Lessons
 ---
 
