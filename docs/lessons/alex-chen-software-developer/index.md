@@ -2,6 +2,7 @@
 title: "LLM Security for Developers: Prompt Injection and Supply Chain Attacks"
 layout: default
 nav_order: 1
+has_children: true
 parent: Lessons
 ---
 

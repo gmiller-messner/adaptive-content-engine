@@ -2,6 +2,7 @@
 title: "AI Security for People Managers: What You're Putting In Matters as Much as What Comes Out"
 layout: default
 nav_order: 2
+has_children: true
 parent: Lessons
 ---
 

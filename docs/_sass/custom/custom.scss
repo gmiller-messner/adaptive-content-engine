@@ -85,6 +85,30 @@
   }
 }
 
+// Lesson Navigation
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e1e4e8;
+
+  a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #0969da;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .lesson-nav-prev { margin-right: auto; }
+  .lesson-nav-next { margin-left: auto; }
+}
+
 // Takeaways
 .takeaways {
   border-left: 4px solid #2ea043;

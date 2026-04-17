@@ -107,7 +107,7 @@ def render_takeaways(content: str) -> str:
         list_html = "\n".join(items)
         return (
             f'\n<div class="takeaways">\n'
-            f"  <p class=\"takeaways-header\">Key Takeaways</p>\n"
+            f'  <p class="takeaways-header">Key Takeaways</p>\n'
             f"  <ul>\n{list_html}\n  </ul>\n"
             f"</div>\n"
         )
@@ -128,26 +128,119 @@ def process_tags(content: str) -> str:
     return content
 
 
-def render_lesson(input_path: Path, output_dir: Path, nav_order: int = 1) -> Path:
+def split_into_parts(content: str) -> list[tuple[str | None, str, str]]:
+    """Split processed lesson content into (heading, body, slug) tuples.
+
+    Splits on ## Part headings. First tuple is the intro (heading=None, slug='index').
+    Returns: list of (heading_text_or_None, body_content, page_slug)
+    """
+    pattern = r"^(## Part \d+.*?)$"
+    segments = re.split(pattern, content, flags=re.MULTILINE)
+
+    result = []
+    intro = segments[0].strip()
+    if intro:
+        result.append((None, intro, "index"))
+
+    part_num = 1
+    i = 1
+    while i < len(segments):
+        heading = segments[i].strip() if i < len(segments) else ""
+        body = segments[i + 1].strip() if i + 1 < len(segments) else ""
+        result.append((heading, body, f"part-{part_num}"))
+        part_num += 1
+        i += 2
+
+    return result
+
+
+def build_page_nav(parts: list, current_index: int) -> str:
+    """Build prev/next navigation HTML for a lesson page."""
+    prev_item = parts[current_index - 1] if current_index > 0 else None
+    next_item = parts[current_index + 1] if current_index < len(parts) - 1 else None
+
+    prev_slug = prev_item[2] if prev_item else None
+    next_slug = next_item[2] if next_item else None
+
+    # Resolve display labels
+    prev_label = "Introduction" if prev_slug == "index" else (
+        prev_item[0].lstrip("#").strip() if prev_item and prev_item[0] else "Previous"
+    )
+    next_label = "Introduction" if next_slug == "index" else (
+        next_item[0].lstrip("#").strip() if next_item and next_item[0] else "Next"
+    )
+
+    # Resolve relative URLs (siblings in same directory; index uses ./)
+    prev_url = "./" if prev_slug == "index" else f"../{prev_slug}/" if prev_slug else None
+    next_url = "./" if next_slug == "index" else f"../{next_slug}/" if next_slug else None
+
+    if not prev_url and not next_url:
+        return ""
+
+    prev_html = (
+        f'<a href="{prev_url}" class="lesson-nav-prev">← {prev_label}</a>'
+        if prev_url else '<span class="lesson-nav-prev"></span>'
+    )
+    next_html = (
+        f'<a href="{next_url}" class="lesson-nav-next">{next_label} →</a>'
+        if next_url else '<span class="lesson-nav-next"></span>'
+    )
+
+    return f'\n\n<div class="lesson-nav">{prev_html}{next_html}</div>\n'
+
+
+def render_lesson(input_path: Path, output_dir: Path, nav_order: int = 1) -> list[Path]:
     content = input_path.read_text(encoding="utf-8")
     title = extract_title(content)
     processed = process_tags(content)
-
-    safe_title = title.replace('"', '\\"')
-    front_matter = (
-        f"---\n"
-        f'title: "{safe_title}"\n'
-        f"layout: default\n"
-        f"nav_order: {nav_order}\n"
-        f"parent: Lessons\n"
-        f"---\n\n"
-    )
-
-    output = front_matter + processed
-
-    output_dir.mkdir(parents=True, exist_ok=True)
     slug = clean_persona_stem(input_path.stem)
-    output_path = output_dir / f"{slug}.md"
-    output_path.write_text(output, encoding="utf-8")
-    print(f"  {input_path.name} → docs/lessons/{output_path.name}")
-    return output_path
+    safe_title = title.replace('"', '\\"')
+
+    parts = split_into_parts(processed)
+
+    # Remove old flat file if it exists from a previous render
+    old_flat = output_dir / f"{slug}.md"
+    if old_flat.exists():
+        old_flat.unlink()
+
+    lesson_dir = output_dir / slug
+    lesson_dir.mkdir(parents=True, exist_ok=True)
+
+    output_paths = []
+
+    for i, (heading, body, page_slug) in enumerate(parts):
+        is_index = page_slug == "index"
+
+        if is_index:
+            front_matter = (
+                f"---\n"
+                f'title: "{safe_title}"\n'
+                f"layout: default\n"
+                f"nav_order: {nav_order}\n"
+                f"has_children: true\n"
+                f"parent: Lessons\n"
+                f"---\n\n"
+            )
+        else:
+            part_num = int(page_slug.split("-")[1])
+            page_title = heading.lstrip("#").strip() if heading else f"Part {part_num}"
+            safe_page_title = page_title.replace('"', '\\"')
+            front_matter = (
+                f"---\n"
+                f'title: "{safe_page_title}"\n'
+                f"layout: default\n"
+                f"nav_order: {part_num}\n"
+                f'parent: "{safe_title}"\n'
+                f"grand_parent: Lessons\n"
+                f"---\n\n"
+            )
+
+        nav_html = build_page_nav(parts, i)
+        output = front_matter + body + nav_html
+
+        output_path = lesson_dir / f"{page_slug}.md"
+        output_path.write_text(output, encoding="utf-8")
+        output_paths.append(output_path)
+        print(f"  {input_path.name} → docs/lessons/{slug}/{page_slug}.md")
+
+    return output_paths
