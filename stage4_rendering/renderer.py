@@ -18,6 +18,11 @@ def clean_persona_stem(stem: str) -> str:
     return name.replace("_", "-")
 
 
+def attr(value: str) -> str:
+    """Escape a string for safe use inside an HTML attribute value."""
+    return value.replace("&", "&amp;").replace('"', "&quot;")
+
+
 def md_to_html_inline(text: str) -> str:
     """Convert inline markdown (bold, italic, code) to HTML."""
     text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
@@ -27,9 +32,20 @@ def md_to_html_inline(text: str) -> str:
 
 
 def format_card_body(body: str) -> str:
-    """Convert card body markdown lines to HTML paragraphs."""
+    """Convert card body plain-text field lines to HTML paragraphs.
+
+    Expects lines in the format 'Field name: value'.
+    The field label is wrapped in <strong>; the value is plain text.
+    """
     lines = [line.strip() for line in body.strip().split("\n") if line.strip()]
-    html_lines = [f"<p>{md_to_html_inline(line)}</p>" for line in lines]
+    html_lines = []
+    for line in lines:
+        match = re.match(r"^([^:]+):\s*(.*)$", line)
+        if match:
+            label, value = match.group(1).strip(), match.group(2).strip()
+            html_lines.append(f"<p><strong>{label}:</strong> {value}</p>")
+        else:
+            html_lines.append(f"<p>{line}</p>")
     return "\n".join(html_lines)
 
 
@@ -38,7 +54,7 @@ def render_attack_cards(content: str) -> str:
         name = match.group(1).strip()
         body = format_card_body(match.group(2))
         return (
-            f'\n<div class="attack-card" data-name="{name}">\n'
+            f'\n<div class="attack-card" data-name="{attr(name)}">\n'
             f"{body}\n"
             f"</div>\n"
         )
@@ -72,7 +88,7 @@ def render_terms(content: str) -> str:
 
 def render_images(content: str) -> str:
     def replace(match):
-        description = match.group(1).strip()
+        description = attr(match.group(1).strip())
         return (
             f'\n\n<div class="image-placeholder" data-caption="{description}"></div>\n\n'
         )
