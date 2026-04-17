@@ -27,6 +27,11 @@ Parallel concepts must have consistent visual hierarchy (e.g. direct injection a
 
 
 Output Conventions
+Lesson structure — use ## Part N: headings as top-level section dividers to separate major content areas. Each Part heading should name the section. Example:
+## Part 1: Prompt Injection
+## Part 2: Supply Chain Attacks
+Subsections within each part use ### headings. Do not use ## headings for anything other than Part dividers and the lesson title.
+
 All lessons should use the following structured placeholder tags:
 Image placeholders:
 [IMAGE: description of recommended visual]
