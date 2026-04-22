@@ -1,44 +1,44 @@
 ---
-title: "Part 3: Your Environment Is the Target"
+title: "Part 3: Your Environment Is a Target"
 layout: default
 nav_order: 3
-parent: "AI Security for Builders: What Every Prompt and Every Install Costs You"
+parent: "Security Decisions You're Already Making"
 grand_parent: Lessons
 ---
 
-### What's Sitting in Your Working Environment
+### Credentials Hiding in Plain Sight
 
-Take a mental inventory. If you're building tools and prototypes with Claude Code, your working environment might contain:
+If you're building tools and prototypes, your working environment likely contains credentials that would be valuable to an attacker. Take a moment to think about what's accessible from the machine or environment where you run Claude Code:
 
-- **API keys** for services like OpenAI, Anthropic, Stripe, Twilio, or others — often stored in `.env` files or set as environment variables
-- **Cloud credentials** for AWS, GCP, or Azure
-- **Database connection strings** with usernames and passwords
-- **Access tokens** for internal tools, CI/CD pipelines, or third-party services
-- **SSH keys** that grant access to servers or repositories
+- **API keys** — for OpenAI, Anthropic, Stripe, Twilio, or other services you've integrated
+- **Cloud credentials** — AWS, GCP, or Azure tokens that might live in environment variables or config files
+- <span class="term-callout"><span class="term-badge">TERM</span> <strong>.env files</strong> — configuration files commonly used to store environment variables including API keys, database URLs, and other secrets, usually kept in a project's root directory</span> containing secrets for the tools and services your prototypes connect to
+- **Database connection strings** — URLs with embedded usernames and passwords
+- **Access tokens** for GitHub, Slack, or internal systems
 
-These are exactly what the LiteLLM malware was designed to harvest. Environment variables and `.env` files are the first thing credential-stealing malware looks for, because developers routinely store secrets there for convenience.
+These are exactly what the LiteLLM malware harvested first. A compromised package running in your environment doesn't need special access — if a credential is available as an environment variable or in a file the process can read, it's reachable.
 
-### What Compromise Looks Like
+This extends beyond malicious packages. If you're pasting code snippets, error logs, or configuration details into AI tools, consider what's included. Samsung engineers pasted proprietary source code into ChatGPT for debugging help and inadvertently exposed confidential intellectual property. According to research from 2025, 77% of enterprise employees who use AI have pasted company data into chatbot queries. Some of that data leaves the organization permanently.
 
-A compromised package doesn't announce itself. But there are signs you can learn to notice:
+### Signs Something Might Be Wrong
 
-- **Unexpected CPU usage or memory spikes** — the LiteLLM malware caused runaway processes and containers crashing from memory exhaustion. If your machine suddenly slows down or fans spin up when you haven't changed anything, that's worth investigating.
-- **Unfamiliar files** — the LiteLLM malware specifically created a `litellm_init.pth` file in the Python path and a persistence script at `~/.config/sysmon/sysmon.py`. More generally, unfamiliar files appearing in your `site-packages` directory, your Python path, or config directories are a red flag.
-- **Unusual outbound network activity** — malware needs to send stolen data somewhere. If you notice unexpected network connections (tools like Little Snitch on macOS or `netstat` on any system can help), that warrants investigation.
-- **Packages you don't recognize** in your installed dependencies — run `pip list` periodically and look for anything you don't remember installing or can't explain.
+If a compromised package does end up in your environment, there are observable signals. None of these individually confirms a compromise, but they're reasons to stop and investigate:
 
-### If You Suspect Compromise
+- **Unexpected CPU usage** — your fan spinning up when you're not running anything intensive, or processes pegging CPU at 100%. The LiteLLM malware caused exactly this.
+- **Unfamiliar files** — files you don't recognize appearing in your project directory, your Python site-packages, or your home directory. The LiteLLM malware specifically created a `litellm_init.pth` file in the Python path and a persistence script at `~/.config/sysmon/sysmon.py`.
+- **Processes you didn't start** — background processes or network connections that don't correspond to anything you're running.
+- **Unexpected outbound network activity** — if you have a network monitor, connections to domains you don't recognize. The LiteLLM malware exfiltrated data to a domain designed to look like a legitimate LiteLLM service.
 
-If something looks wrong, these are the immediate steps:
+### What to Do If Something Looks Wrong
 
-1. **Disconnect from the network** if possible — this limits further data exfiltration
-2. **Don't just uninstall the suspect package** — as the LiteLLM case showed, malware can establish persistence mechanisms that survive package removal
-3. **Treat every credential accessible from that environment as compromised** — rotate API keys, cloud credentials, access tokens, database passwords. All of them.
-4. **If you're at a company with a security team, contact them immediately** — they need to know, and they'll have a process for this
-5. **If you're working solo or at an early-stage startup**, rotate all credentials, rebuild the environment from scratch (don't just clean the existing one), and audit what the compromised environment had access to
+If you see multiple warning signs and suspect your environment may be compromised, here's the sequence:
 
-The remediation bar is high because the consequences of assuming "it's probably fine" are worse than the cost of rotating credentials.
+1. **Disconnect from the network** — if malware is exfiltrating data, cutting the connection limits what can be sent out
+2. **Stop running commands** — don't run more code, builds, or installs in that environment until you've investigated
+3. **Inventory your exposed credentials** — identify every API key, cloud credential, and access token that was accessible from that environment
+4. **Rotate those credentials** — change every key and token that was accessible, even if you're not certain they were stolen. Assume they were.
+5. **Tell your engineering or security team** — they can do forensic analysis, check for persistence mechanisms, and help determine the scope
 
----
+If you work with an engineering team, this is exactly the kind of situation where knowing what to report matters as much as knowing how to fix it. "I noticed unexpected CPU usage and unfamiliar files after a package install — here's what I was working on and what credentials were in that environment" gives a security team everything they need to start investigating.
 
-<div class="lesson-nav"><a href="../part-2/" class="lesson-nav-prev">← Part 2: Supply Chain Attacks</a><a href="../part-4/" class="lesson-nav-next">Part 4: Three Habits That Change Everything →</a></div>
+<div class="lesson-nav"><a href="../part-2/" class="lesson-nav-prev">← Part 2: Supply Chain Attacks — The Threat You Haven't Met</a><a href="../part-4/" class="lesson-nav-next">Part 4: Habits That Fit How You Work →</a></div>

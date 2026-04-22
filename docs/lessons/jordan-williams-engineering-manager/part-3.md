@@ -1,30 +1,50 @@
 ---
-title: "Part 3: Supply Chain Attacks"
+title: "Part 3: Your Data Is the Attack Surface"
 layout: default
 nav_order: 3
-parent: "LLM Security for People Managers: Protecting Your Team's Data"
+parent: "AI Security for People Managers"
 grand_parent: Lessons
 ---
 
-<span class="term-callout"><span class="term-badge">TERM</span> <strong>Supply chain attack</strong> — An attack that targets not your application or tool directly, but the dependencies, libraries, or build tools it relies on. If the attacker compromises something your tool trusts, they inherit that trust.</span>
+### What You Paste In Matters
 
-You don't need to understand supply chain attacks at a technical level, but you should know they exist and why they matter for your team.
+Prompt injection is about what comes *out* of an AI tool when it's been manipulated. But there's an equally important risk in what goes *in* — specifically, the sensitive data you provide to AI tools as part of your normal workflow.
 
-### The Short Version
+In 2023, Samsung engineers pasted proprietary source code into ChatGPT for debugging help. The code left Samsung's control permanently. Samsung subsequently banned generative AI tools on internal networks. According to research from LayerX in 2025, 77% of enterprise employees who use AI have pasted company data into chatbot queries, and 22% of those instances included confidential personal or financial data.
 
-Modern software is built on layers of open-source packages. A supply chain attack compromises one of those packages — often a widely trusted one — and every application that depends on it inherits the compromise.
+Replace "source code" with "performance improvement plan" or "compensation discussion notes" or "disciplinary action summary." The mechanism is identical: data pasted into an AI tool may be stored, logged, or used for model training, depending on the tool and its terms of service. Once it's there, you can't get it back.
 
-In March 2026, a popular AI package called LiteLLM was compromised through its own security scanner. For about three hours, anyone who installed or updated the package received a version that stole credentials, API keys, and cloud access tokens. The package is downloaded roughly 3.4 million times per day and is a dependency of major AI projects. 88% of the packages that depend on LiteLLM had no version controls that would have prevented them from automatically pulling the compromised version.
+### Shadow AI
 
-The attackers didn't need to attack thousands of applications individually. They attacked one trusted package and gained access to everything downstream.
+<span class="term-callout"><span class="term-badge">TERM</span> <strong>Shadow AI</strong> — The use of personal or unauthorized AI tools for work tasks, bypassing the organization's approved tools and security policies.</span>
 
-### Why This Matters for You
+If you sometimes use a personal ChatGPT or Claude account for work tasks — maybe because it's faster, or you're working late, or the company tool is clunky — you're making a security decision every time you do it. Company-approved AI tools typically have enterprise agreements that include data handling provisions: no training on submitted content, data retention limits, access controls. Personal accounts usually don't have those protections.
 
-You probably aren't installing Python packages. But your team might be. And the tools you use — including AI assistants, Slack integrations, and internal platforms — all depend on supply chains like this.
+A performance review drafted with the help of a personal AI account means that employee's ratings, development areas, and possibly their name are sitting on a server governed by consumer terms of service. A compensation discussion summarized through an unapproved tool means salary data is in the same position.
 
-Two things you can do with this knowledge:
+This isn't about rule-following for its own sake. It's about data stewardship — you're the custodian of your team's most personal professional information.
 
-- **Ask your team and your security partners the right questions.** "What external tools and packages run in our build pipelines? Are dependency versions pinned? What happens if one of our dependencies is compromised — would we know?" These questions signal that you understand the risk and help your security team prioritize.
-- **Recognize the signs if your team encounters something unusual.** If a team member reports unexpected CPU spikes, unfamiliar processes, or strange network activity after a routine update, take it seriously and escalate to your security team immediately. The LiteLLM compromise was first noticed because systems started crashing from resource exhaustion.
+### Building a Personal Data Policy
 
-<div class="lesson-nav"><a href="../part-2/" class="lesson-nav-prev">← Part 2: Your Data Is the Risk</a><a href="../part-4/" class="lesson-nav-next">Part 4: What You Can Do →</a></div>
+One of the most useful things you can do is articulate a clear personal rule for what you will and won't paste into an AI tool. Here's a framework:
+
+**Before pasting, ask:** *If this text were accidentally posted on the company intranet, who would be harmed?*
+
+Content that's safe to use with approved tools:
+- Generic templates and frameworks ("help me structure a 30-60-90 day plan")
+- Your own rough drafts without names or identifying details
+- General management questions ("how do I give feedback on missed deadlines")
+
+Content that requires extreme caution even with approved tools:
+- Anything with an employee's name attached to performance data
+- Compensation figures
+- Disciplinary or PIP details
+- Medical or personal information shared in confidence
+- Candidate evaluations with identifying information
+
+Content that should never go into a personal AI account:
+- Any of the above
+
+The habit to build: **pause before pasting.** That moment of friction — "should this go into this tool?" — is the single most effective security practice for your role.
+
+<div class="lesson-nav"><a href="../part-2/" class="lesson-nav-prev">← Part 2: Prompt Injection — Why It Matters for Your Work</a><a href="../part-4/" class="lesson-nav-next">Part 4: Supply Chain Attacks — What Managers Need to Know →</a></div>

@@ -40,6 +40,11 @@ Example structure:
 ## Part 2: Supply Chain Attacks
 ### Subsection
 
+Each Part should contain no more than 4-5 ### subsections. If the content requires more depth, split it into additional Parts rather than adding more subsections. For example, if Prompt Injection needs extensive coverage of both attack types and defenses, split into:
+## Part 1: Prompt Injection — How It Works
+## Part 2: Prompt Injection — Defenses
+rather than cramming 8-10 subsections into a single Part.
+
 All lessons should use the following structured placeholder tags:
 Image placeholders:
 [IMAGE: description of recommended visual]
