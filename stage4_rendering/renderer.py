@@ -173,9 +173,13 @@ def build_page_nav(parts: list, current_index: int) -> str:
         next_item[0].lstrip("#").strip() if next_item and next_item[0] else "Next"
     )
 
-    # Resolve relative URLs (siblings in same directory; index uses ./)
+    # Resolve relative URLs. Index page is one level up from part pages,
+    # so parts use ../<slug>/ to navigate between siblings, but index uses
+    # <slug>/ (no ..) to link forward to its children.
+    current_slug = parts[current_index][2]
+    is_index = current_slug == "index"
     prev_url = "./" if prev_slug == "index" else f"../{prev_slug}/" if prev_slug else None
-    next_url = "./" if next_slug == "index" else f"../{next_slug}/" if next_slug else None
+    next_url = "./" if next_slug == "index" else (f"{next_slug}/" if is_index else f"../{next_slug}/") if next_slug else None
 
     if not prev_url and not next_url:
         return ""

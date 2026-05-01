@@ -13,6 +13,6 @@ Every time you approve a package install in Claude Code, let Cowork add a depend
 This lesson covers two categories of threat that are directly relevant to how you work: prompt injection (which you may have encountered at a surface level) and supply chain attacks (which you probably haven't, but which touch your workflow every time a package gets installed). The goal isn't to slow you down or make you second-guess everything. It's to give you a few specific habits that protect you without breaking your stride.
 
 <div class="lesson-nav">
-<a href="../part-1/" class="lesson-nav-next">Part 1: Prompt Injection — The Core Problem →</a>
+<a href="part-1/" class="lesson-nav-next">Part 1: Prompt Injection — The Core Problem →</a>
 </div>
 
