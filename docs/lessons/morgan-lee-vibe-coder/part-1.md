@@ -83,4 +83,7 @@ Security researcher Johann Rehberger spent $500 testing Devin AI — an autonomo
 
 The same capability that makes these tools powerful — terminal access, code execution, file system access — is exactly what makes a successful injection so damaging.
 
-<div class="lesson-nav"><a href="./" class="lesson-nav-prev">← Introduction</a><a href="../part-2/" class="lesson-nav-next">Part 2: Supply Chain Attacks — The Threat You Haven't Met →</a></div>
+<div class="lesson-nav">
+<a href="./" class="lesson-nav-prev">← Introduction</a><a href="../part-2/" class="lesson-nav-next">Part 2: Supply Chain Attacks — The Threat You Haven't Met →</a>
+</div>
+

@@ -64,4 +64,7 @@ These aren't theoretical demonstrations in lab settings. They've hit production 
 
 **Devin AI coding agent.** Security researcher Johann Rehberger spent $500 testing Devin and found it completely defenseless against prompt injection. The agent could be manipulated to expose ports to the internet, leak access tokens, and install command-and-control malware. Directly relevant if you're building or using coding agents with terminal access.
 
-<div class="lesson-nav"><a href="./" class="lesson-nav-prev">← Introduction</a><a href="../part-2/" class="lesson-nav-next">Part 2: Prompt Injection — Where It Enters Your Pipeline →</a></div>
+<div class="lesson-nav">
+<a href="./" class="lesson-nav-prev">← Introduction</a><a href="../part-2/" class="lesson-nav-next">Part 2: Prompt Injection — Where It Enters Your Pipeline →</a>
+</div>
+

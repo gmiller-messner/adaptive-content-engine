@@ -48,4 +48,7 @@ If you or your CI/CD pipeline ran `pip install litellm` or `pip install --upgrad
 
 FutureSearch published a dependency checker at futuresearch.ai/tools/litellm-checker if you want to verify whether specific packages in your stack were exposed.
 
-<div class="lesson-nav"><a href="../part-3/" class="lesson-nav-prev">← Part 3: Prompt Injection — Layered Defenses</a><a href="../part-5/" class="lesson-nav-next">Part 5: Supply Chain — Hardening Your Stack →</a></div>
+<div class="lesson-nav">
+<a href="../part-3/" class="lesson-nav-prev">← Part 3: Prompt Injection — Layered Defenses</a><a href="../part-5/" class="lesson-nav-next">Part 5: Supply Chain — Hardening Your Stack →</a>
+</div>
+

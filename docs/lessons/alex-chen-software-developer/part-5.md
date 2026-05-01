@@ -101,4 +101,7 @@ litellm==1.83.0 \
   </ul>
 </div>
 
-<div class="lesson-nav"><a href="../part-4/" class="lesson-nav-prev">← Part 4: Supply Chain Attacks — The LiteLLM Breach</a><span class="lesson-nav-next"></span></div>
+<div class="lesson-nav">
+<a href="../part-4/" class="lesson-nav-prev">← Part 4: Supply Chain Attacks — The LiteLLM Breach</a>
+</div>
+

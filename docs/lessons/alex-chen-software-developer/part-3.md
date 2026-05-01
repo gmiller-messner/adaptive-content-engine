@@ -98,4 +98,7 @@ Key principles:
 - **Human-in-the-loop before irreversible actions** — any action that sends data externally, executes code, modifies a file system, or makes a purchase should require explicit human approval. This is the single highest-impact defense for agentic systems.
 - **Monitoring and logging** — maintain records of every tool call an agent makes. Tools like LangSmith provide observability for LangChain-based agentic pipelines, making it possible to audit what actions were taken and what content triggered them. This is the same observability principle you'd apply to any production service — you can't debug or detect anomalies in actions you don't log.
 
-<div class="lesson-nav"><a href="../part-2/" class="lesson-nav-prev">← Part 2: Prompt Injection — Where It Enters Your Pipeline</a><a href="../part-4/" class="lesson-nav-next">Part 4: Supply Chain Attacks — The LiteLLM Breach →</a></div>
+<div class="lesson-nav">
+<a href="../part-2/" class="lesson-nav-prev">← Part 2: Prompt Injection — Where It Enters Your Pipeline</a><a href="../part-4/" class="lesson-nav-next">Part 4: Supply Chain Attacks — The LiteLLM Breach →</a>
+</div>
+

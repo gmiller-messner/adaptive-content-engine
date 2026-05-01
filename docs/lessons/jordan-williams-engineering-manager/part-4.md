@@ -42,4 +42,7 @@ If you manage developers, the concrete questions worth asking:
 
 You don't need to know the answers yourself. You need to make sure someone on your team does.
 
-<div class="lesson-nav"><a href="../part-3/" class="lesson-nav-prev">← Part 3: Your Data Is the Attack Surface</a><a href="../part-5/" class="lesson-nav-next">Part 5: Your Defense Plan →</a></div>
+<div class="lesson-nav">
+<a href="../part-3/" class="lesson-nav-prev">← Part 3: Your Data Is the Attack Surface</a><a href="../part-5/" class="lesson-nav-next">Part 5: Your Defense Plan →</a>
+</div>
+

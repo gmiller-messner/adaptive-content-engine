@@ -41,4 +41,7 @@ If you see multiple warning signs and suspect your environment may be compromise
 
 If you work with an engineering team, this is exactly the kind of situation where knowing what to report matters as much as knowing how to fix it. "I noticed unexpected CPU usage and unfamiliar files after a package install — here's what I was working on and what credentials were in that environment" gives a security team everything they need to start investigating.
 
-<div class="lesson-nav"><a href="../part-2/" class="lesson-nav-prev">← Part 2: Supply Chain Attacks — The Threat You Haven't Met</a><a href="../part-4/" class="lesson-nav-next">Part 4: Habits That Fit How You Work →</a></div>
+<div class="lesson-nav">
+<a href="../part-2/" class="lesson-nav-prev">← Part 2: Supply Chain Attacks — The Threat You Haven't Met</a><a href="../part-4/" class="lesson-nav-next">Part 4: Habits That Fit How You Work →</a>
+</div>
+

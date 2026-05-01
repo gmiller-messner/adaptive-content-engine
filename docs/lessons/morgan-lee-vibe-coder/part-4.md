@@ -73,4 +73,7 @@ Both of these threats intersect with how you work. Every package install and eve
   </ul>
 </div>
 
-<div class="lesson-nav"><a href="../part-3/" class="lesson-nav-prev">← Part 3: Your Environment Is a Target</a><span class="lesson-nav-next"></span></div>
+<div class="lesson-nav">
+<a href="../part-3/" class="lesson-nav-prev">← Part 3: Your Environment Is a Target</a>
+</div>
+

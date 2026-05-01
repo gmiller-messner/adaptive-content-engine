@@ -52,4 +52,7 @@ LiteLLM is a direct dependency of projects including CrewAI, DSPy, MLflow, and o
 
 The attackers didn't need to target each project individually. They compromised one widely trusted package and inherited access to everything downstream.
 
-<div class="lesson-nav"><a href="../part-1/" class="lesson-nav-prev">← Part 1: Prompt Injection — The Core Problem</a><a href="../part-3/" class="lesson-nav-next">Part 3: Your Environment Is a Target →</a></div>
+<div class="lesson-nav">
+<a href="../part-1/" class="lesson-nav-prev">← Part 1: Prompt Injection — The Core Problem</a><a href="../part-3/" class="lesson-nav-next">Part 3: Your Environment Is a Target →</a>
+</div>
+

@@ -182,14 +182,14 @@ def build_page_nav(parts: list, current_index: int) -> str:
 
     prev_html = (
         f'<a href="{prev_url}" class="lesson-nav-prev">← {prev_label}</a>'
-        if prev_url else '<span class="lesson-nav-prev"></span>'
+        if prev_url else ""
     )
     next_html = (
         f'<a href="{next_url}" class="lesson-nav-next">{next_label} →</a>'
-        if next_url else '<span class="lesson-nav-next"></span>'
+        if next_url else ""
     )
 
-    return f'\n\n<div class="lesson-nav">{prev_html}{next_html}</div>\n'
+    return f'\n\n<div class="lesson-nav">\n{prev_html}{next_html}\n</div>\n\n'
 
 
 def render_lesson(input_path: Path, output_dir: Path, nav_order: int = 1) -> list[Path]:

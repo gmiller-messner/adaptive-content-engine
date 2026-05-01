@@ -28,4 +28,7 @@ You might use AI to summarize a direct report's self-review, draft talking point
 
 The defense here isn't technical. It's a habit: **treat AI output on personnel decisions as a draft, not a verdict.**
 
-<div class="lesson-nav"><a href="../part-1/" class="lesson-nav-prev">← Part 1: Prompt Injection — How It Works</a><a href="../part-3/" class="lesson-nav-next">Part 3: Your Data Is the Attack Surface →</a></div>
+<div class="lesson-nav">
+<a href="../part-1/" class="lesson-nav-prev">← Part 1: Prompt Injection — How It Works</a><a href="../part-3/" class="lesson-nav-next">Part 3: Your Data Is the Attack Surface →</a>
+</div>
+

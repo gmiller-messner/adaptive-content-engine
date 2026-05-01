@@ -47,4 +47,7 @@ Content that should never go into a personal AI account:
 
 The habit to build: **pause before pasting.** That moment of friction — "should this go into this tool?" — is the single most effective security practice for your role.
 
-<div class="lesson-nav"><a href="../part-2/" class="lesson-nav-prev">← Part 2: Prompt Injection — Why It Matters for Your Work</a><a href="../part-4/" class="lesson-nav-next">Part 4: Supply Chain Attacks — What Managers Need to Know →</a></div>
+<div class="lesson-nav">
+<a href="../part-2/" class="lesson-nav-prev">← Part 2: Prompt Injection — Why It Matters for Your Work</a><a href="../part-4/" class="lesson-nav-next">Part 4: Supply Chain Attacks — What Managers Need to Know →</a>
+</div>
+

@@ -65,4 +65,7 @@ Attackers exploit the gap between what humans see and what AI sees. Common techn
 
 <div class="image-placeholder" data-caption="Side-by-side showing a resume as a human sees it (clean, normal) versus the same resume with hidden white-on-white text revealed, containing injection instructions"></div>
 
-<div class="lesson-nav"><a href="./" class="lesson-nav-prev">← Introduction</a><a href="../part-2/" class="lesson-nav-next">Part 2: Prompt Injection — Why It Matters for Your Work →</a></div>
+<div class="lesson-nav">
+<a href="./" class="lesson-nav-prev">← Introduction</a><a href="../part-2/" class="lesson-nav-next">Part 2: Prompt Injection — Why It Matters for Your Work →</a>
+</div>
+

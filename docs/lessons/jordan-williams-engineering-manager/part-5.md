@@ -54,4 +54,7 @@ If those two ideas guide your daily AI usage, you're ahead of most.
   </ul>
 </div>
 
-<div class="lesson-nav"><a href="../part-4/" class="lesson-nav-prev">← Part 4: Supply Chain Attacks — What Managers Need to Know</a><span class="lesson-nav-next"></span></div>
+<div class="lesson-nav">
+<a href="../part-4/" class="lesson-nav-prev">← Part 4: Supply Chain Attacks — What Managers Need to Know</a>
+</div>
+
