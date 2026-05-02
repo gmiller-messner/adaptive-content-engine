@@ -1,7 +1,7 @@
 // Attack Model Card
 .attack-card {
   border-left: 4px solid #e05252;
-  background-color: rgba(224, 82, 82, 0.08);
+  background-color: rgba(224, 82, 82, 0.15);
   border-radius: 0 6px 6px 0;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
@@ -17,7 +17,7 @@
     color: #e05252;
     margin-bottom: 0.75rem;
     padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(224, 82, 82, 0.2);
+    border-bottom: 1px solid rgba(224, 82, 82, 0.35);
   }
 
   p {
@@ -31,7 +31,7 @@
 .term-callout {
   display: inline-block;
   border-left: 3px solid #4a7fcb;
-  background-color: rgba(74, 127, 203, 0.1);
+  background-color: rgba(74, 127, 203, 0.15);
   border-radius: 0 4px 4px 0;
   padding: 0.5rem 0.75rem;
   margin: 0.75rem 0;
@@ -110,7 +110,7 @@
 // Takeaways
 .takeaways {
   border-left: 4px solid #2ea043;
-  background-color: rgba(46, 160, 67, 0.08);
+  background-color: rgba(46, 160, 67, 0.15);
   border-radius: 0 6px 6px 0;
   padding: 1rem 1.25rem;
   margin: 2rem 0;
