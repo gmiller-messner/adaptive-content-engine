@@ -1,6 +1,11 @@
 title: Adaptive Content Engine
 description: Security lessons tailored to your role, background, and tools.
+url: "https://gmiller-messner.github.io"
+baseurl: "/adaptive-content-engine"
 remote_theme: just-the-docs/just-the-docs
+
+permalink: pretty
+color_scheme: dark
 
 search_enabled: true
 
