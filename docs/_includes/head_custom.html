@@ -1,0 +1,8 @@
+<script>
+  // Apply saved theme before first render to prevent a flash of wrong theme.
+  (function () {
+    var theme = localStorage.getItem('ace-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<script defer src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
