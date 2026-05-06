@@ -1,29 +1,31 @@
 // ─── Theme Variables ──────────────────────────────────────────────────────────
 
 :root {
-  --attack-card-bg: #fdf3f3;
-  --attack-card-separator: #f0c8c8;
-  --term-callout-bg: #f0f6ff;
-  --image-placeholder-bg: #f6f8fa;
-  --image-placeholder-border: #c8cdd2;
-  --image-placeholder-label: #8c9198;
-  --image-placeholder-caption: #6a737d;
-  --takeaways-bg: #f3faf3;
+  --attack-card-bg: #fad5d5;
+  --attack-card-separator: #e8a0a0;
+  --term-callout-bg: #d6e8ff;
+  --image-placeholder-bg: #e8ecf0;
+  --image-placeholder-border: #b0b8c2;
+  --image-placeholder-label: #6a737d;
+  --image-placeholder-caption: #57606a;
+  --takeaways-bg: #d4f0d4;
   --nav-border: #e1e4e8;
   --nav-link: #0969da;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="dark"] {
-  --attack-card-bg: #3a2020;
-  --attack-card-separator: rgba(224, 82, 82, 0.35);
-  --term-callout-bg: #1e2d4a;
-  --image-placeholder-bg: #2d333b;
-  --image-placeholder-border: #444c56;
-  --image-placeholder-label: #6e7681;
+  --attack-card-bg: #6b3030;
+  --attack-card-separator: rgba(224, 82, 82, 0.4);
+  --term-callout-bg: #2d4575;
+  --image-placeholder-bg: #3d4552;
+  --image-placeholder-border: #4e5764;
+  --image-placeholder-label: #8b949e;
   --image-placeholder-caption: #8b949e;
-  --takeaways-bg: #1a2e1a;
+  --takeaways-bg: #2e5230;
   --nav-border: #30363d;
   --nav-link: #79c0ff;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 // ─── Attack Model Card ────────────────────────────────────────────────────────
@@ -31,6 +33,7 @@
 .attack-card {
   border-left: 4px solid #e05252;
   background-color: var(--attack-card-bg);
+  box-shadow: var(--card-shadow);
   border-radius: 0 6px 6px 0;
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
@@ -62,6 +65,7 @@
   display: inline-block;
   border-left: 3px solid #4a7fcb;
   background-color: var(--term-callout-bg);
+  box-shadow: var(--card-shadow);
   border-radius: 0 4px 4px 0;
   padding: 0.5rem 0.75rem;
   margin: 0.75rem 0;
@@ -143,6 +147,7 @@
 .takeaways {
   border-left: 4px solid #2ea043;
   background-color: var(--takeaways-bg);
+  box-shadow: var(--card-shadow);
   border-radius: 0 6px 6px 0;
   padding: 1rem 1.25rem;
   margin: 2rem 0;
