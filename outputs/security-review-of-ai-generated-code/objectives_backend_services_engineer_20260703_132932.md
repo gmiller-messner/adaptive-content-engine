@@ -1,0 +1,13 @@
+## Security Review of AI-Generated Code — Objectives for Senior Backend/Services Engineers
+
+By the end of this lesson, you can:
+
+1. **Articulate the AI-specific review trap for experienced engineers:** explain why fluent, well-structured generated code — a plausible-looking endpoint handler, a clean ORM query, a tidy deserialization helper — suppresses the same skeptical instinct that would fire on messy human-written code, and why your review volume makes that suppression a systematic rather than occasional risk.
+
+2. **Identify the vulnerability classes that AI generation reliably reintroduces in service code:** broken authorization (an endpoint that authenticates but never checks whether the caller owns the resource), SQL or command injection through ORM escape-hatch patterns (`raw()`, `execute()`, string interpolation into query builders), insecure deserialization in generated parsing or messaging code, and sensitive data leaking into generated response serializers or structured logs — and distinguish these from what your tooling already catches upstream (known-bad dependencies, hardcoded secrets).
+
+3. **Apply a "what's missing" review discipline to a generated endpoint or data-access layer:** start from intent (what should this endpoint be allowed to do, and for whom), trace the untrusted input path through the generated handler into the query or downstream call, look first for the absent authorization check rather than the malformed one, and verify that ORM or query-builder calls are parameterized — not by re-reading every line, but by knowing the exact patterns where models cut corners.
+
+4. **Recognize the authorization and security blind spots in AI-generated test suites:** identify when generated tests confirm that an endpoint returns 200 for valid input but skip the cases that matter for your risk surface — calling with another user's resource ID, calling without a token, calling with a token scoped to a different role or tenant — and use those gaps to drive what you write or require before merge.
+
+5. **Make fast, consistent merge/block decisions on AI-generated backend changes:** treat missing or bypassable authorization checks and unparameterized query construction as unconditional merge-stoppers; treat data-exposure issues in responses or logs as blockers with a clear remediation path; and distinguish both from issues — overly broad error messages, suboptimal retry logic — that are fix-forward and do not hold the review.

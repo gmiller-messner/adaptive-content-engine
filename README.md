@@ -6,6 +6,8 @@ A staged agentic pipeline that generates tailored learning content from source d
 
 Given a source document and a learner persona, the engine generates a lesson customized to that learner's role, technical level, existing knowledge, and specific risk exposure. The same source material produces meaningfully different lessons for a software developer, an engineering manager, or a product manager — because the right lesson for each person is not the same lesson.
 
+The engine is topic-agnostic. Each subject lives in its own **content set** under `content/`, so you can generate lessons for any number of source documents without touching code.
+
 ## Pipeline Architecture
 
 This project is structured as a staged pipeline. Each stage is designed to be developed and demonstrated independently.
@@ -15,28 +17,35 @@ This project is structured as a staged pipeline. Each stage is designed to be de
 | Stage 1 | Document ingestion and preprocessing | Planned |
 | Stage 2 | Persona parsing and enrichment | Planned |
 | **Stage 3** | **Lesson generation** | **Built** |
-| Stage 4 | Output formatting and delivery | Planned |
+| **Stage 4** | **Rendering to GitHub Pages** | **Built** |
 
-## Stage 3: Lesson Generation
+Stage 3 takes a source document and a persona profile, calls the Anthropic API (Claude Opus 4.8 with adaptive thinking), and streams a tailored lesson to the console and an output file. Stage 4 renders the tagged lesson markdown into GitHub Pages-compatible pages.
 
-Stage 3 takes a source document and a persona profile as inputs, calls the Anthropic API (Claude Opus 4.6 with adaptive thinking), and streams a tailored lesson to the console and an output file.
-
-### Project Structure
+## Project Structure
 
 ```
 adaptive-content-engine/
 ├── README.md
 ├── requirements.txt
 ├── .env.example
-├── outputs/                          # Generated lessons land here
-└── stage3_lesson_generation/
-    ├── run.py                        # Entry point
-    ├── generator.py                  # API call and lesson generation
-    └── inputs/
-        ├── source_document.md
-        ├── persona_alex_chen_software_developer.md
-        ├── persona_jordan_williams_engineering_manager.md
-        └── persona_morgan_lee_vibe_coder.md
+├── run.py                            # Entry point (generate / render / all / sets)
+├── content/                          # One folder per topic ("content set")
+│   ├── _shared/
+│   │   └── style_standards.md        # Topic-agnostic, applied to every set
+│   └── llm-security/
+│       ├── source_document.md        # Required
+│       ├── learning_objectives.md    # Optional
+│       ├── examples_bank.md          # Optional
+│       └── personas/
+│           ├── alex_chen_software_developer.md
+│           ├── jordan_williams_engineering_manager.md
+│           └── morgan_lee_vibe_coder.md
+├── outputs/                          # Generated lessons, namespaced by set
+│   └── llm-security/
+├── stage3_lesson_generation/
+│   └── generator.py                  # API call and lesson generation
+└── stage4_rendering/
+    └── renderer.py                   # Tag processing + GitHub Pages markdown
 ```
 
 ### Setup
@@ -57,30 +66,39 @@ ANTHROPIC_API_KEY=your-api-key-here
 pip install -r requirements.txt
 ```
 
-### Running the Lesson Generator
+### Running the Engine
 
-Navigate to the `stage3_lesson_generation` directory and run:
+All commands run from the project root via `run.py`:
+
 ```bash
-cd stage3_lesson_generation
-python run.py
+python run.py sets                        # list available content sets
+python run.py generate --set llm-security # generate lessons for one set
+python run.py generate --all-sets         # generate for every set
+python run.py render --set llm-security    # render a set to GitHub Pages markdown
+python run.py all --set llm-security       # generate then render
 ```
 
-The lesson will stream to your terminal as it generates, then save as a Markdown file in the `outputs/` directory.
+`generate` produces one lesson per persona in the set. Each lesson streams to your terminal as it generates, then saves to `outputs/<set>/`. Running `generate` with no `--set`/`--all-sets` prints the available sets rather than generating everything.
 
-### Switching Personas
+### Adaptive Learning Objectives
 
-To generate a lesson for a different persona, open `run.py` and update the `PERSONA` variable:
+A set's `learning_objectives.md` holds generic, topic-level objectives. Before writing each lesson, the engine runs a lightweight adaptation call (Claude Sonnet 4.6) that rewrites those generic objectives for the specific persona — their role, tools, and risk exposure. The adapted objectives are saved as `outputs/<set>/objectives_<persona>_<timestamp>.md` (alongside the lesson they drove) and fed into the lesson-generation call. If a set has no `learning_objectives.md`, this step is skipped.
 
-```python
-# Alex Chen — Software Developer
-PERSONA = INPUTS_DIR / "persona_alex_chen_software_developer.md"
+### Adding a New Topic
 
-# Jordan Williams — Engineering Manager
-# PERSONA = INPUTS_DIR / "persona_jordan_williams_engineering_manager.md"
+Create a new content set — no code changes required:
 
-# Morgan Lee — Vibe-Coder / Product Manager
-# PERSONA = INPUTS_DIR / "persona_morgan_lee_vibe_coder.md"
 ```
+content/<your-topic>/
+├── source_document.md        # required
+├── learning_objectives.md    # optional
+├── examples_bank.md          # optional
+└── personas/
+    ├── persona_one.md
+    └── persona_two.md
+```
+
+Then run `python run.py generate --set <your-topic>`. Style standards in `content/_shared/style_standards.md` are applied to every set automatically.
 
 ### Example Output
 

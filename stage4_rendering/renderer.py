@@ -196,11 +196,16 @@ def build_page_nav(parts: list, current_index: int) -> str:
     return f'\n\n<div class="lesson-nav">\n{prev_html}{next_html}\n</div>\n\n'
 
 
-def render_lesson(input_path: Path, output_dir: Path, nav_order: int = 1) -> list[Path]:
+def render_lesson(
+    input_path: Path, output_dir: Path, nav_order: int = 1, set_name: str | None = None
+) -> list[Path]:
     content = input_path.read_text(encoding="utf-8")
     title = extract_title(content)
     processed = process_tags(content)
     slug = clean_persona_stem(input_path.stem)
+    # Namespace the page slug by set so two topics sharing a persona don't collide.
+    if set_name:
+        slug = f"{set_name}-{slug}"
     safe_title = title.replace('"', '\\"')
 
     parts = split_into_parts(processed)
