@@ -95,7 +95,15 @@ def cmd_render(args):
     if sets is None:
         return
 
+    # Offset each set's nav_order by its rank among all sets, so lessons group by
+    # topic in the site nav and never collide across sets (llm-security -> 1,2,3;
+    # next set -> 101,102; ...). Rank comes from the full set list, so ordering is
+    # stable even when rendering a single set.
+    all_sets = discover_sets()
+    NAV_ORDER_PER_SET = 100
+
     for set_name in sets:
+        set_rank = all_sets.index(set_name)
         set_output_dir = OUTPUTS_DIR / set_name
         all_lessons = list(set_output_dir.glob("lesson_*.md"))
         if not all_lessons:
@@ -116,7 +124,8 @@ def cmd_render(args):
 
         print(f"\n=== Set: {set_name} — rendering {len(latest)} lesson(s) ===")
         for i, lesson_path in enumerate(latest, start=1):
-            render_lesson(lesson_path, DOCS_LESSONS_DIR, nav_order=i, set_name=set_name)
+            nav_order = set_rank * NAV_ORDER_PER_SET + i
+            render_lesson(lesson_path, DOCS_LESSONS_DIR, nav_order=nav_order, set_name=set_name)
 
 
 def cmd_all(args):
